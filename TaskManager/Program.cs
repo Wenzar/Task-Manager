@@ -76,7 +76,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", p =>
-        p.WithOrigins("http://localhost:49443", "https://localhost:49443")
+        p.WithOrigins("http://localhost:49443", "https://localhost:49443", "http://localhost:3000")
          .AllowAnyHeader()
          .AllowAnyMethod());
 });
@@ -89,11 +89,11 @@ using (var scope = app.Services.CreateScope())
     db.Database.EnsureCreated();
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
